@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Submission_4</string>
+    <string name="tab_movies">Film</string>
+    <string name="tab_tv">Acara TV</string>
+    <string name="title">judul</string>
+    <string name="decription">deskripsi</string>
+    <string name="change_language_settings">ubah pengaturan bahasa</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Halo blank fragment</string>
+</resources>
