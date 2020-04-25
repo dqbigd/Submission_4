@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.submission_4.MainViewModel;
-import com.example.submission_4.MoviesResult;
+import com.example.submission_4.model.Movie;
 import com.example.submission_4.R;
 import com.example.submission_4.adapter.MoviesAdapter;
 
@@ -49,11 +49,11 @@ public class MoviesFragment extends Fragment {
 
         mainViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MainViewModel.class);
         mainViewModel.setMovies();
-        mainViewModel.getMovies().observe(this, new Observer<ArrayList<MoviesResult>>() {
+        mainViewModel.getMovies().observe(this, new Observer<ArrayList<Movie>>() {
             @Override
-            public void onChanged(ArrayList<MoviesResult> moviesResults) {
-                if (moviesResults != null) {
-                    moviesAdapter.setData(moviesResults);
+            public void onChanged(ArrayList<Movie> movies) {
+                if (movies != null) {
+                    moviesAdapter.setData(movies);
                     pbMovie.setVisibility(View.GONE);
                 }
             }

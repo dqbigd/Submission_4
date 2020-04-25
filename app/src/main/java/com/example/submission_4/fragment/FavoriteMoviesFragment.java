@@ -37,7 +37,7 @@ public class FavoriteMoviesFragment extends Fragment {
         rvMovieFav = view.findViewById(R.id.rvMovieFav);
         rvMovieFav.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvMovieFav.setHasFixedSize(true);
-        moviesFavAdapter = new MoviesFavAdapter();
+//        moviesFavAdapter = new MoviesFavAdapter();
         rvMovieFav.setAdapter(moviesFavAdapter);
 
         return view;

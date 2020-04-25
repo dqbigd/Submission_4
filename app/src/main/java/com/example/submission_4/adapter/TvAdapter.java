@@ -13,16 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.submission_4.R;
-import com.example.submission_4.TvResult;
+import com.example.submission_4.model.Tv;
 import com.example.submission_4.activity.DetailTvActivity;
 
 import java.util.ArrayList;
 
 public class TvAdapter extends RecyclerView.Adapter<TvAdapter.TvViewHolder> {
-    private ArrayList<TvResult> tvsResults = new ArrayList<>();
+    private ArrayList<Tv> tvsResults = new ArrayList<>();
     private Context context ;
 
-    public void setData(ArrayList<TvResult> items) {
+    public void setData(ArrayList<Tv> items) {
         tvsResults.clear();
         tvsResults.addAll(items);
         notifyDataSetChanged();
@@ -58,10 +58,10 @@ public class TvAdapter extends RecyclerView.Adapter<TvAdapter.TvViewHolder> {
             itemView.setOnClickListener(this);
         }
 
-        public void bind(TvResult tvResult) {
-            txtTitle.setText(tvResult.getTitle());
-            txtDesc.setText(tvResult.getOverview());
-            Glide.with(itemView.getContext()).load("https://image.tmdb.org/t/p/w185"+tvResult.getPosterPath()).into(imgPhoto);
+        public void bind(Tv tv) {
+            txtTitle.setText(tv.getTitle());
+            txtDesc.setText(tv.getOverview());
+            Glide.with(itemView.getContext()).load("https://image.tmdb.org/t/p/w185"+ tv.getPosterPath()).into(imgPhoto);
         }
 
         @Override

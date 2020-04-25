@@ -1,28 +1,38 @@
-package com.example.submission_4;
+package com.example.submission_4.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class TvFav implements Parcelable {
-    private String posterPath;
+public class Movie implements Parcelable {
+    private Integer id;
     private String title;
     private String overview;
+    private String posterPath;
 
-    protected TvFav(Parcel in) {
+    public Movie(){
+
+    }
+
+    protected Movie(Parcel in) {
         posterPath = in.readString();
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
         title = in.readString();
         overview = in.readString();
     }
 
-    public static final Creator<TvFav> CREATOR = new Creator<TvFav>() {
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
         @Override
-        public TvFav createFromParcel(Parcel in) {
-            return new TvFav(in);
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
         }
 
         @Override
-        public TvFav[] newArray(int size) {
-            return new TvFav[size];
+        public Movie[] newArray(int size) {
+            return new Movie[size];
         }
     };
 
@@ -32,6 +42,14 @@ public class TvFav implements Parcelable {
 
     public void setPosterPath(String posterPath) {
         this.posterPath = posterPath;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -58,6 +76,12 @@ public class TvFav implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(posterPath);
+        if (id == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(id);
+        }
         parcel.writeString(title);
         parcel.writeString(overview);
     }

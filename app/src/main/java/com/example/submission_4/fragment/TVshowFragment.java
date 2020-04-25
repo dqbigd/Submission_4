@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.submission_4.MainViewModel;
 import com.example.submission_4.R;
-import com.example.submission_4.TvResult;
+import com.example.submission_4.model.Tv;
 import com.example.submission_4.adapter.TvAdapter;
 
 import java.util.ArrayList;
@@ -50,9 +50,9 @@ public class TVshowFragment extends Fragment {
 
         mainViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MainViewModel.class);
         mainViewModel.setTv();
-        mainViewModel.getTv().observe(this, new Observer<ArrayList<TvResult>>() {
+        mainViewModel.getTv().observe(this, new Observer<ArrayList<Tv>>() {
             @Override
-            public void onChanged(ArrayList<TvResult> tvsResults) {
+            public void onChanged(ArrayList<Tv> tvsResults) {
                 if (tvsResults != null) {
                     tvAdapter.setData(tvsResults);
                     pbTv.setVisibility(View.GONE);

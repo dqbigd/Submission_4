@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.submission_4.R;
-import com.example.submission_4.TvResult;
+import com.example.submission_4.model.Tv;
 
 public class DetailTvActivity extends AppCompatActivity {
     public static final String EXTRA_TV = "extra_tv";
@@ -23,7 +23,7 @@ public class DetailTvActivity extends AppCompatActivity {
         txtJudul = findViewById(R.id.txtJudul);
         txtDesc = findViewById(R.id.txtDesc);
 
-        TvResult tvsResult = getIntent().getParcelableExtra(EXTRA_TV);
+        Tv tvsResult = getIntent().getParcelableExtra(EXTRA_TV);
         txtJudul.setText(tvsResult.getTitle());
         txtDesc.setText(tvsResult.getOverview());
         Glide.with(this).load("https://image.tmdb.org/t/p/w185"+tvsResult.getPosterPath()).into(imgPhoto);

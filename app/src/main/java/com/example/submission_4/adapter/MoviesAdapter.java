@@ -12,19 +12,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.submission_4.MoviesResult;
+import com.example.submission_4.model.Movie;
 import com.example.submission_4.R;
 import com.example.submission_4.activity.DetailMovieActivity;
 
 import java.util.ArrayList;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>{
-    private ArrayList<MoviesResult> moviesResults = new ArrayList<>();
+    private ArrayList<Movie> movies = new ArrayList<>();
     private Context context ;
 
-    public void setData(ArrayList<MoviesResult> items) {
-        moviesResults.clear();
-        moviesResults.addAll(items);
+    public void setData(ArrayList<Movie> items) {
+        movies.clear();
+        movies.addAll(items);
         notifyDataSetChanged();
     }
 
@@ -38,13 +38,13 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
 
     @Override
     public void onBindViewHolder(@NonNull final MoviesViewHolder holder, final int position) {
-        holder.bind(moviesResults.get(position));
+        holder.bind(movies.get(position));
 
     }
 
     @Override
     public int getItemCount() {
-        return moviesResults.size();
+        return movies.size();
     }
 
     public class MoviesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -65,15 +65,15 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
 
             Intent intentDetail = new Intent(view.getContext(), DetailMovieActivity.class);
 
-             intentDetail.putExtra(DetailMovieActivity.EXTRA_MOVIE, moviesResults.get(getAdapterPosition()));
+            intentDetail.putExtra(DetailMovieActivity.EXTRA_MOVIE, movies.get(getAdapterPosition()));
             view.getContext().startActivity(intentDetail);
 
         }
 
-        void bind(MoviesResult moviesResult){
-            txtTitle.setText(moviesResult.getTitle());
-            txtDesc.setText(moviesResult.getOverview());
-            Glide.with(itemView.getContext()).load("https://image.tmdb.org/t/p/w185"+moviesResult.getPosterPath()).into(imgPhoto);
+        void bind(Movie movie){
+            txtTitle.setText(movie.getTitle());
+            txtDesc.setText(movie.getOverview());
+            Glide.with(itemView.getContext()).load("https://image.tmdb.org/t/p/w185"+ movie.getPosterPath()).into(imgPhoto);
         }
 
     }

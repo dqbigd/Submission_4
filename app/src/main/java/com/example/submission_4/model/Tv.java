@@ -1,19 +1,19 @@
-package com.example.submission_4;
+package com.example.submission_4.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class TvResult implements Parcelable {
+public class Tv implements Parcelable {
     private String posterPath;
     private Integer id;
     private String title;
     private String overview;
 
-    public TvResult(){
+    public Tv(){
 
     }
 
-    protected TvResult(Parcel in) {
+    protected Tv(Parcel in) {
         posterPath = in.readString();
         if (in.readByte() == 0) {
             id = null;
@@ -24,15 +24,15 @@ public class TvResult implements Parcelable {
         overview = in.readString();
     }
 
-    public static final Creator<TvResult> CREATOR = new Creator<TvResult>() {
+    public static final Creator<Tv> CREATOR = new Creator<Tv>() {
         @Override
-        public TvResult createFromParcel(Parcel in) {
-            return new TvResult(in);
+        public Tv createFromParcel(Parcel in) {
+            return new Tv(in);
         }
 
         @Override
-        public TvResult[] newArray(int size) {
-            return new TvResult[size];
+        public Tv[] newArray(int size) {
+            return new Tv[size];
         }
     };
 

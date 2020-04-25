@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.example.submission_4.MoviesResult;
+import com.example.submission_4.model.Movie;
 import com.example.submission_4.R;
 import com.example.submission_4.db.DatabaseContract;
 import com.example.submission_4.db.MoviesHelper;
@@ -36,11 +36,11 @@ public class DetailMovieActivity extends AppCompatActivity {
         moviesHelper = MoviesHelper.getInstance(getApplicationContext());
         moviesHelper.open();
 
-        MoviesResult moviesResult = getIntent().getParcelableExtra(EXTRA_MOVIE);
+        Movie movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
 
-        title = moviesResult.getTitle();
-        desc = moviesResult.getOverview();
-        photo = "https://image.tmdb.org/t/p/w185"+moviesResult.getPosterPath();
+        title = movie.getTitle();
+        desc = movie.getOverview();
+        photo = "https://image.tmdb.org/t/p/w185"+ movie.getPosterPath();
 
         txtJudul.setText(title);
         txtDesc.setText(desc);

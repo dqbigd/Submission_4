@@ -6,6 +6,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.submission_4.model.Movie;
+import com.example.submission_4.model.Tv;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -18,12 +20,12 @@ import cz.msebera.android.httpclient.Header;
 
 public class MainViewModel extends ViewModel {
     private static final String API_KEY = "3d99bbc2deabf611d45e30918d521114";
-    private MutableLiveData<ArrayList<MoviesResult>> listMovies = new MutableLiveData<>();
-    private MutableLiveData<ArrayList<TvResult>> listTv = new MutableLiveData<>();
+    private MutableLiveData<ArrayList<Movie>> listMovies = new MutableLiveData<>();
+    private MutableLiveData<ArrayList<Tv>> listTv = new MutableLiveData<>();
 
     public void setMovies(){
         AsyncHttpClient client = new AsyncHttpClient();
-        final ArrayList<MoviesResult> listItems = new ArrayList<>();
+        final ArrayList<Movie> listItems = new ArrayList<>();
         String url = "https://api.themoviedb.org/3/discover/movie?api_key="+API_KEY+"&language=en-US";
 
         client.get(url, new AsyncHttpResponseHandler() {
@@ -36,11 +38,11 @@ public class MainViewModel extends ViewModel {
 
                     for (int i = 0; i < result1.length(); i++) {
                         JSONObject resultMo = result1.getJSONObject(i);
-                        MoviesResult moviesResult = new MoviesResult();
-                        moviesResult.setTitle(resultMo.getString("title"));
-                        moviesResult.setOverview(resultMo.getString("overview"));
-                        moviesResult.setPosterPath(resultMo.getString("poster_path"));
-                        listItems.add(moviesResult);
+                        Movie movie = new Movie();
+                        movie.setTitle(resultMo.getString("title"));
+                        movie.setOverview(resultMo.getString("overview"));
+                        movie.setPosterPath(resultMo.getString("poster_path"));
+                        listItems.add(movie);
                     }
                     listMovies.postValue(listItems);
                 } catch (Exception e) {
@@ -56,13 +58,13 @@ public class MainViewModel extends ViewModel {
 
     }
 
-    public LiveData<ArrayList<MoviesResult>> getMovies() {
+    public LiveData<ArrayList<Movie>> getMovies() {
         return listMovies;
     }
 
     public void setTv(){
         AsyncHttpClient client = new AsyncHttpClient();
-        final ArrayList<TvResult> listItems = new ArrayList<>();
+        final ArrayList<Tv> listItems = new ArrayList<>();
         String url = "https://api.themoviedb.org/3/discover/tv?api_key="+API_KEY+"&language=en-US";
 
         client.get(url, new AsyncHttpResponseHandler() {
@@ -75,11 +77,11 @@ public class MainViewModel extends ViewModel {
 
                     for (int i = 0; i < result1.length(); i++) {
                         JSONObject resultTv = result1.getJSONObject(i);
-                        TvResult tvResult = new TvResult();
-                        tvResult.setTitle(resultTv.getString("name"));
-                        tvResult.setOverview(resultTv.getString("overview"));
-                        tvResult.setPosterPath(resultTv.getString("poster_path"));
-                        listItems.add(tvResult);
+                        Tv tv = new Tv();
+                        tv.setTitle(resultTv.getString("name"));
+                        tv.setOverview(resultTv.getString("overview"));
+                        tv.setPosterPath(resultTv.getString("poster_path"));
+                        listItems.add(tv);
                     }
                     listTv.postValue(listItems);
                 } catch (Exception e) {
@@ -95,7 +97,7 @@ public class MainViewModel extends ViewModel {
 
     }
 
-    public LiveData<ArrayList<TvResult>> getTv() {
+    public LiveData<ArrayList<Tv>> getTv() {
         return listTv;
     }
 }

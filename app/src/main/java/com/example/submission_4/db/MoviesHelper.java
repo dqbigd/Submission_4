@@ -7,6 +7,10 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.submission_4.model.Movie;
+
+import java.util.ArrayList;
+
 import static android.provider.BaseColumns._ID;
 import static com.example.submission_4.db.DatabaseContract.MovieFavColumns.TABLE_NAME;
 
@@ -43,14 +47,18 @@ public class MoviesHelper {
             database.close();
     }
 
-    public Cursor selectAll() {
-        return database.query(DATABASE_TABLE,
+    public ArrayList<Movie> selectAll() {
+         Cursor cursor = database.query(DATABASE_TABLE,
                 null,
                 null,
                 null,
                 null,
                 null,
                 _ID + " DESC");
+         cursor.moveToFirst();
+
+
+        return null;
     }
 
     public Cursor selectById(String id) {
